@@ -102,7 +102,12 @@ function Quiz() {
     // show marked answers by storing the ans in array, display the ans corresponding to count
 
     return <>
-        <section className="w-full bg-[#1e293a] h-screen flex flex-col justify-center">
+        <section className="w-full h-screen flex flex-col justify-center p-16">
+        <div className="border-red-400 border-2 inline w-fit mx-auto px-[4px] py-1 text-center mb-12">
+                <p className="border-blue-500 p-2 text-3xl border-2 bg-gradient-to-r from-red-500 to-blue-400 bg-clip-text inline font-bold" style={{
+                    WebkitTextFillColor: "transparent"
+                }}>QUIZ COMPETETION</p>
+            </div>
             <div className="flex flex-col justify-center items-center w-11/12 max-w-[720px] p-8 bg-gray-900 m-auto rounded shadow-lg">
                 <div className="flex justify-end w-full">
                     <p className="text-gray-400 text-lg">{quesCount}/10</p>

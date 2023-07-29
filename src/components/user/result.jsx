@@ -9,7 +9,7 @@ function Result() {
     const reducer = useSelector((state) => state.userReducer)
     const navigate = useNavigate()
     const name = JSON.parse(localStorage.getItem("user"))
-    const correct_ans = reducer.correct_ans
+    const correct_ans = reducer.correct_ans.length
     const total_ques = reducer.questions.length
     const wrong_ans = total_ques - correct_ans
     const score = correct_ans * 10
@@ -62,7 +62,7 @@ function Result() {
                 }}>To Dashboard</button>
                 </div>
             </div>
-        </section >
+        </section>
         <ToastContainer />
     </>
 }

@@ -70,6 +70,7 @@ function Dashboard() {
             <div className="flex justify-end w-full mb-16 mt-4">
                 <button type="submit" className="w-full my-8 bg-black text-teal-500 shadow-sm shadow-teal-400 rounded-lg focus:bg-teal-600 p-2 font-semibold max-w-[160px] md:max-w-[180px] outline-none" onClick={() => {
                     navigate("/")
+                    localStorage.removeItem("user")
                 }}>Play Again</button>
             </div>
         </section>

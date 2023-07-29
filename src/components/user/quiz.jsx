@@ -61,7 +61,9 @@ function Quiz() {
                 answer: optionIndex
             }))
             if (options.includes(currQues.correct_answer)) {
-                dispatch(incrementCorrectAns())
+                dispatch(incrementCorrectAns({
+                    question: quesCount,
+                }))
                 setModal({
                     title: "Correct Answer",
                     text: "Move to next question",
@@ -96,9 +98,9 @@ function Quiz() {
                     username: user.username,
                     category: user.category,
                     difficulty: user.difficulty,
-                    correct_ans: reducer.correct_ans,
+                    correct_ans: reducer.correct_ans.length,
                     total_ques: reducer.questions.length,
-                    score: reducer.correct_ans * 10
+                    score: reducer.correct_ans.length * 10
                 }
                 setModal({
                     title: "Quiz Submission",
@@ -138,7 +140,6 @@ function Quiz() {
     function handlePrev() {
         dispatch(decrement())
         dispatch(handleCheck(1))
-        dispatch(decrementCorrectAns())
     }
 
     function markOption(index) {

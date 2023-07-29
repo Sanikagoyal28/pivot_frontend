@@ -110,7 +110,6 @@ function Quiz() {
                 correct_ans: reducer.correct_ans,
                 total_ques: reducer.questions.length,
                 score: reducer.correct_ans * 10
-
             }
             setModal({
                 title: "Quiz Submission",
@@ -121,8 +120,10 @@ function Quiz() {
             })
             setDialogFunc(() => () => {
                 dispatch(SubmitThunk(data)).then((res) => {
-                    navigate("/result")
-                    setShowModal(false)
+                    if (res.payload.data.success) {
+                        navigate("/result")
+                        setShowModal(false)
+                    }
                 })
             })
         }

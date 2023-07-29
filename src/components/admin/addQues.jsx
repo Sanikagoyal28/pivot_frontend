@@ -67,6 +67,18 @@ function AddQues() {
                     });
                 }
             })
+
+        setInputs({
+            category: "",
+            difficulty: "",
+            question: "",
+            correct_answer: "",
+            option1: "",
+            option2: "",
+            option3: "",
+            incorrect_answers: [
+            ]
+        })
     }
 
     return <>
@@ -82,7 +94,7 @@ function AddQues() {
                     <label className="text-base mb-1">Category</label>
                     <select className="bg-gray-700 rounded-lg p-2 outline-none focus:bg-gray-800 focus:border border-gray-700" required onChange={(e) => {
                         handleChange("category", e.target.value)
-                    }} onClick={handleCategory}>
+                    }} onClick={handleCategory} >
                         <option value="">--select--</option>
                         {categories.length > 0 && categories.map((item) => {
                             return <option value={item._id} key={item._id}>
@@ -96,7 +108,7 @@ function AddQues() {
                     <label className="text-base mb-1">Difficulty</label>
                     <select className="bg-gray-700 rounded-lg p-2 outline-none focus:bg-gray-800 focus:border border-gray-700" required onChange={(e) => {
                         handleChange("difficulty", e.target.value)
-                    }}>
+                    }} value={inputs.difficulty}>
                         <option value="">--select--</option>
                         <option value="easy">Easy</option>
                         <option value="medium">Medium</option>
@@ -104,11 +116,11 @@ function AddQues() {
                     </select>
                 </div>
 
-                <Input label="Question" placeholder="Enter Question" name="question" onChange={handleChange} />
-                <Input label="Correct Answer" placeholder="Enter Correct Answer" name="correct_answer" onChange={handleChange} />
-                <Input label="Option 1" placeholder="Enter Option 1" name="option1" onChange={handleChange} />
-                <Input label="Option 2" placeholder="Enter Option 2" name="option2" onChange={handleChange} />
-                <Input label="Option 3" placeholder="Enter Option 3" name="option3" onChange={handleChange} />
+                <Input label="Question" placeholder="Enter Question" name="question" onChange={handleChange} value={inputs.question} />
+                <Input label="Correct Answer" placeholder="Enter Correct Answer" name="correct_answer" onChange={handleChange} value={inputs.correct_answer} />
+                <Input label="Option 1" placeholder="Enter Option 1" name="option1" onChange={handleChange} value={inputs.option1} />
+                <Input label="Option 2" placeholder="Enter Option 2" name="option2" onChange={handleChange} value={inputs.option2} />
+                <Input label="Option 3" placeholder="Enter Option 3" name="option3" onChange={handleChange} value={inputs.option3} />
 
                 <button type="submit" className="w-full mt-6 mb-8 text-black bg-teal-500 shadow-sm shadow-teal-400 rounded-lg focus:bg-teal-600 duration-300 ease-in p-2 font-semibold max-w-4/5 outline-none hover:scale-[1.02]">Add Question</button>
             </form>

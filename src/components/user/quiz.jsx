@@ -7,7 +7,7 @@ import wrongLogo from "../assets/fail.gif"
 import correctLogo from "../assets/success.gif"
 import { useNavigate } from "react-router";
 import { useDispatch, useSelector } from "react-redux";
-import { SubmitThunk, decrement, handleCheck, increment, increment_correct_ans, markedOption } from "../../redux/userSlice.js";
+import { SubmitThunk, decrement, decrementCorrectAns, handleCheck, increment, incrementCorrectAns, markedOption } from "../../redux/userSlice.js";
 
 function Quiz() {
 
@@ -18,7 +18,6 @@ function Quiz() {
     const [quesCount, setQuesCount] = useState(reducer.ques_count);
     const [options, setOptions] = useState([])
     const [optionIndex, setOptionIndex] = useState(0)
-    const [check, setCheck] = useState(0)
     const user = JSON.parse(localStorage.getItem("user"))
     const [currQues, setCurrQues] = useState({
         question: "",
@@ -37,8 +36,7 @@ function Quiz() {
 
     useEffect(() => {
         setQuesCount(reducer.ques_count)
-        setCheck(reducer.check)
-    }, [reducer.ques_count, reducer.check])
+    }, [reducer.ques_count])
 
     function handleOptions(index) {
         var options = document.getElementsByClassName("options");
@@ -63,7 +61,7 @@ function Quiz() {
                 answer: optionIndex
             }))
             if (options.includes(currQues.correct_answer)) {
-                dispatch(increment_correct_ans())
+                dispatch(incrementCorrectAns())
                 setModal({
                     title: "Correct Answer",
                     text: "Move to next question",
@@ -132,10 +130,15 @@ function Quiz() {
             })
         }
     }
-   
+
+    const [check, setCheck] = useState(0)
+    useEffect(() => {
+        setCheck(reducer.check)
+    }, [reducer.check])
     function handlePrev() {
         dispatch(decrement())
         dispatch(handleCheck(1))
+        dispatch(decrementCorrectAns())
     }
 
     function markOption(index) {
@@ -149,17 +152,19 @@ function Quiz() {
     }
 
     useEffect(() => {
-        const x = reducer.marked_options.find((item) => item.question === reducer.quesCount)
+        const x = reducer.marked_options.find((item) => item.question === reducer.ques_count)
         if (x !== undefined)
             dispatch(handleCheck(1))
         else
             dispatch(handleCheck(0))
-    }, [reducer])
+    }, [reducer, quesCount])
 
     useEffect(() => {
+        // console.log(quesCount)
         if (check === 1) {
-            const x = reducer.marked_options.find((item) => item.question === quesCount)
+            const x = reducer.marked_options.find((item) => item.question === reducer.ques_count)
             if (x !== undefined) {
+                console.log("yes")
                 // console.log(x.answer, quesCount, reducer.marked_options)
                 var selectedOption = x.answer
                 handleOptions(selectedOption)

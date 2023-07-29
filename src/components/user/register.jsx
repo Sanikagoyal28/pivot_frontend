@@ -81,12 +81,12 @@ function Register() {
         <div className="flex flex-col justify-center w-full py-12">
             <form className="h-fit bg-gray-900 py-4 md:px-12 sm:px-8 px-4 text-white w-11/12 rounded shadow-lg max-w-[500px] mx-auto" onSubmit={handleSubmit}>
                 <h2 className="font-bold text-3xl text-center my-4">User Registration</h2>
-                <Input label="Username" placeholder="Enter your Username" name="username" onChange={handleChange} />
+                <Input label="Username" placeholder="Enter your Username" name="username" onChange={handleChange} value={inputs.username} />
                 <div className="flex flex-col max-w-4/5 w-full mx-auto my-4 text-gray-200">
                     <label className="text-base mb-1">Category</label>
                     <select className="bg-gray-700 rounded-lg p-2 outline-none focus:bg-gray-800 focus:border border-gray-700" required onChange={(e) => {
                         handleChange("category", e.target.value)
-                    }} onClick={handleCategory}>
+                    }} onClick={handleCategory} >
                         <option value="">--select--</option>
                         {categories.length > 0 && categories.map((item) => {
                             return <option value={item._id} key={item._id}>
@@ -99,7 +99,7 @@ function Register() {
                     <label className="text-base mb-1">Difficulty</label>
                     <select className="bg-gray-700 rounded-lg p-2 outline-none focus:bg-gray-800 focus:border border-gray-700" required onChange={(e) => {
                         handleChange("difficulty", e.target.value)
-                    }}>
+                    }} value={inputs.difficulty}>
                         <option value="">--select--</option>
                         <option value="easy">Easy</option>
                         <option value="medium">Medium</option>
@@ -111,7 +111,7 @@ function Register() {
                     <label className="text-base mb-1">Number of Questions</label>
                     <select className="bg-gray-700 rounded-lg p-2 outline-none focus:bg-gray-800 focus:border border-gray-700" required onChange={(e) => {
                         handleChange("numOfQues", e.target.value)
-                    }} onClick={handleQuestion}>
+                    }} onClick={handleQuestion} value={inputs.numOfQues} >
                         <option value="">--select--</option>
                         {questions.length > 0 && questions.map((item) => {
                             return <option value={item} key={item}>{item}</option>

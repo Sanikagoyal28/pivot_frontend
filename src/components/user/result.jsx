@@ -53,7 +53,7 @@ function Result() {
                 </div>
                 <div className="flex w-full items-center justify-between my-2 gap-4">
                     <label className="text-lg md:text-xl font-semibold text-gray-200 underline underline-offset-4 w-2/5">Percentage:</label>
-                    <p className="text-gray-300 text-base md:text-lg px-2 py-1 rounded bg-gray-600 w-1/2">{percentage}%</p>
+                    <p className="text-gray-300 text-base md:text-lg px-2 py-1 rounded bg-gray-600 w-1/2">{percentage.toFixed(4)}%</p>
                 </div>
 
                 <div className="flex justify-end w-full">

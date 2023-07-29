@@ -64,8 +64,11 @@ const UserSlice = createSlice({
         decrement: (state, action) => {
             state.ques_count = state.ques_count - 1
         },
-        increment_correct_ans: (state, action) => {
+        incrementCorrectAns: (state, action) => {
             state.correct_ans = state.correct_ans + 1
+        },
+        decrementCorrectAns: (state, action) => {
+            state.correct_ans = state.correct_ans - 1
         },
         markedOption: (state, action) => {
             const index = state.marked_options.findIndex((item) => item.question === action.payload.question)
@@ -129,4 +132,4 @@ const UserSlice = createSlice({
 
 export { GetQuestionThunk, SubmitThunk, DashboardThunk, SortThunk }
 export default UserSlice
-export const { increment, decrement, increment_correct_ans, markedOption, handleCheck } = UserSlice.actions
+export const { increment, decrement, incrementCorrectAns, decrementCorrectAns, markedOption, handleCheck } = UserSlice.actions

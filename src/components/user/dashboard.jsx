@@ -4,7 +4,6 @@ import { useNavigate } from "react-router"
 import { DashboardThunk, SortThunk } from "../../redux/userSlice"
 import Loader from "../../utils/loader"
 
-
 function Dashboard() {
 
     const reducer = useSelector((state) => state.userReducer)
@@ -48,7 +47,7 @@ function Dashboard() {
             </div>
 
             <div className="overflow-x-auto mx-12 w-11/12 md:w-full">
-                <table className="w-full lg:max-w-4/5 bg-gray-700 text-gray-200 table-fixed mb-16">
+                <table className="w-full lg:max-w-4/5 bg-gray-700 text-gray-200 table-fixed">
                     <tr>
                         <th className="text-lg border-2 border-gray-400 text-center px-1 py-3">User Name</th>
                         <th className="text-lg border-2 border-gray-400 text-center px-1 py-3">Quiz Category</th>
@@ -67,6 +66,11 @@ function Dashboard() {
                         </tr>
                     })}
                 </table>
+            </div>
+            <div className="flex justify-end w-full mb-16 mt-4">
+                <button type="submit" className="w-full my-8 bg-black text-teal-500 shadow-sm shadow-teal-400 rounded-lg focus:bg-teal-600 p-2 font-semibold max-w-[160px] md:max-w-[180px] outline-none" onClick={() => {
+                    navigate("/")
+                }}>Play Again</button>
             </div>
         </section>
         <Loader loading={reducer.loading} />

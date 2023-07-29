@@ -10,8 +10,8 @@ const initialState = {
     answers: []
 }
 
-const AdminThunk = createAsyncThunk("admin", async (data) => {
-    return await baseurl.post("start_survey", data)
+const LoginThunk = createAsyncThunk("admin", async (data) => {
+    return await baseurl.post("admin/login", data)
         .then((res) => {
             return res
         })
@@ -20,25 +20,49 @@ const AdminThunk = createAsyncThunk("admin", async (data) => {
         })
 })
 
+const AddQuestionThunk = createAsyncThunk("add_question", async (data) => {
+    const accessToken =localStorage.getItem("token")
+    const config = {
+        headers: {
+            "Authorization": `Bearer ${accessToken}`
+        }
+    }
+    return await baseurl.post("admin/add_question", data, config)
+        .then((res) => {
+            return res
+        })
+        .catch((Err) => {
+            return Err.response
+        })
+})
 const AdminSlice = createSlice({
     name: "admin",
     initialState,
     reducers: {
     },
     extraReducers:(builder)=>{
-        builder.addCase(AdminThunk.pending, (state, action) => {
+        builder.addCase(LoginThunk.pending, (state, action) => {
             state.loading = true;
         })
-        builder.addCase(AdminThunk.fulfilled, (state, action) => {
+        builder.addCase(LoginThunk.fulfilled, (state, action) => {
             state.loading = false;
             state.msg = action.payload.data.msg
-            state.questions = action.payload.data.questions
         })
-        builder.addCase(AdminThunk.rejected, (state, action) => {
+        builder.addCase(LoginThunk.rejected, (state, action) => {
+            state.loading = false;
+        })
+        builder.addCase(AddQuestionThunk.pending, (state, action) => {
+            state.loading = true;
+        })
+        builder.addCase(AddQuestionThunk.fulfilled, (state, action) => {
+            state.loading = false;
+            state.msg = action.payload.data.msg
+        })
+        builder.addCase(AddQuestionThunk.rejected, (state, action) => {
             state.loading = false;
         })
     }
 })
 
-export { AdminThunk }
+export { LoginThunk , AddQuestionThunk}
 export default AdminSlice

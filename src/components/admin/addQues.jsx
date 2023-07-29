@@ -1,5 +1,10 @@
-import { useState } from "react"
+import { useEffect, useState } from "react"
 import Input from "./input"
+import { useDispatch, useSelector } from "react-redux"
+import { AddQuestionThunk } from "../../redux/adminSlice"
+import { CategoryThunk } from "../../redux/categorySlice"
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 function AddQues() {
 
@@ -8,19 +13,31 @@ function AddQues() {
         difficulty: "",
         question: "",
         correct_answer: "",
-        option1:"",
-        option2:"",
-        option3:"",
+        option1: "",
+        option2: "",
+        option3: "",
         incorrect_answers: [
         ]
     })
+    const [categories, setCategories] = useState([])
+    const dispatch = useDispatch()
+    const reducer = useSelector((state) => state.adminReducer)
+    const categReducer = useSelector((state) => state.categReducer)
 
     function handleChange(identifier, value) {
-            setInputs({
-                ...inputs,
-                [identifier]: value
-            })
+        setInputs({
+            ...inputs,
+            [identifier]: value
+        })
     }
+
+    function handleCategory() {
+        dispatch(CategoryThunk())
+    }
+
+    useEffect(() => {
+        setCategories(categReducer.categories)
+    }, [categReducer])
 
     function handleSubmit(e) {
         e.preventDefault()
@@ -34,7 +51,21 @@ function AddQues() {
             ]
         }
 
-        console.log(data)
+        dispatch(AddQuestionThunk(data)).
+            then((res) => {
+                if (res.payload.data.success) {
+                    toast.success(`${res.payload.data.msg}`, {
+                        position: "top-right",
+                        theme: "light",
+                    });
+                }
+                else {
+                    toast.error(`${res.payload.data.msg}`, {
+                        position: "top-right",
+                        theme: "light",
+                    });
+                }
+            })
     }
 
     return <>
@@ -50,12 +81,13 @@ function AddQues() {
                     <label className="text-base mb-1">Category</label>
                     <select className="bg-gray-700 rounded-lg p-2 outline-none focus:bg-gray-800 focus:border border-gray-700" required onChange={(e) => {
                         handleChange("category", e.target.value)
-                    }}>
+                    }} onClick={handleCategory}>
                         <option value="">--select--</option>
-                        <option value="general_knowledge">General Knowledge</option>
-                        <option value="science">Science</option>
-                        <option value="sports">Sports</option>
-                        <option value="music">Music</option>
+                        {categories.length > 0 && categories.map((item) => {
+                            return <option value={item._id} key={item._id}>
+                                {item.category}
+                            </option>
+                        })}
                     </select>
                 </div>
 
@@ -77,10 +109,10 @@ function AddQues() {
                 <Input label="Option 2" placeholder="Enter Option 2" name="option2" onChange={handleChange} />
                 <Input label="Option 3" placeholder="Enter Option 3" name="option3" onChange={handleChange} />
 
-                <button type="submit" className="w-full mt-6 mb-8 text-black bg-teal-500 shadow-sm shadow-teal-400 rounded-lg focus:bg-teal-600 duration-300 ease-in p-2 font-semibold max-w-4/5 outline-none hover:scale-[1.02]">Signin</button>
+                <button type="submit" className="w-full mt-6 mb-8 text-black bg-teal-500 shadow-sm shadow-teal-400 rounded-lg focus:bg-teal-600 duration-300 ease-in p-2 font-semibold max-w-4/5 outline-none hover:scale-[1.02]">Add Question</button>
             </form>
         </section>
-
+        <ToastContainer />
     </>
 }
 

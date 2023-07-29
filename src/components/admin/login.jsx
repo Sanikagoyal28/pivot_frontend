@@ -51,7 +51,7 @@ function Login() {
     }
     return <>
         <div className="flex flex-col justify-center h-screen w-full">
-            <form className="flex flex-col justify-center items-center bg-gray-900 py-4 px-12 text-white w-11/12 rounded shadow-lg max-w-[500px] mx-auto" onSubmit={handleSubmit}>
+            <form className="bg-gray-900 py-4 px-12 text-white w-11/12 rounded shadow-lg max-w-[500px] mx-auto" onSubmit={handleSubmit}>
                 <h2 className="font-bold text-3xl text-center my-4">Admin SignIn</h2>
                 <Input label="Username" placeholder="Enter your Username" name="username" onChange={handleChange} />
                 <Input label="Password" placeholder="Enter your Password" name="password" onChange={handleChange} />

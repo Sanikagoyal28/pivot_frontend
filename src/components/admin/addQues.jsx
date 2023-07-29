@@ -5,6 +5,7 @@ import { AddQuestionThunk } from "../../redux/adminSlice"
 import { CategoryThunk } from "../../redux/categorySlice"
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import Loader from "../../utils/loader"
 
 function AddQues() {
 
@@ -75,7 +76,7 @@ function AddQues() {
                     WebkitTextFillColor: "transparent"
                 }}>ADD QUESTION</p>
             </div>
-            <form className="flx flex-col justify-center items-center bg-gray-900 py-4 px-12 text-white w-11/12 rounded shadow-lg max-w-[500px] mx-auto" onSubmit={handleSubmit}>
+            <form className="bg-gray-900 py-4 px-12 text-white w-11/12 rounded shadow-lg max-w-[500px] mx-auto" onSubmit={handleSubmit}>
                 <h2 className="font-semibold text-2xl text-center my-4">Add a Question by selecting a category, its Difficulty level and their options</h2>
                 <div className="flex flex-col max-w-4/5 w-full mx-auto my-4 text-gray-200">
                     <label className="text-base mb-1">Category</label>
@@ -112,6 +113,7 @@ function AddQues() {
                 <button type="submit" className="w-full mt-6 mb-8 text-black bg-teal-500 shadow-sm shadow-teal-400 rounded-lg focus:bg-teal-600 duration-300 ease-in p-2 font-semibold max-w-4/5 outline-none hover:scale-[1.02]">Add Question</button>
             </form>
         </section>
+        <Loader loading={reducer.loading} />
         <ToastContainer />
     </>
 }

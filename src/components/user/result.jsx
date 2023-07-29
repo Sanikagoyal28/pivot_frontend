@@ -35,29 +35,29 @@ function Result() {
             </div>
 
             <div className="flex flex-col justify-center items-center mx-auto max-w-[560px] w-11/12">
-                <div className="flex w-full items-center justify-start my-2 gap-4 mx-auto">
-                    <label className="text-xl font-semibold text-gray-200 underline underline-offset-4 w-2/5">Name:</label>
-                    <p className="text-gray-300 text-lg px-2 py-1 rounded bg-gray-600 w-1/2">{name.username}</p>
+                <div className="flex w-full items-center justify-between my-2 gap-4 mx-auto">
+                    <label className="text-lg md:text-xl font-semibold text-gray-200 underline underline-offset-4 w-2/5">Name:</label>
+                    <p className="text-gray-300 text-base md:text-lg px-2 py-1 rounded bg-gray-600 w-1/2">{name.username}</p>
                 </div>
-                <div className="flex w-full items-center justify-start my-2 gap-4">
-                    <label className="text-xl font-semibold text-gray-200 underline underline-offset-4 w-2/5">Correct Answer Count:</label>
-                    <p className="text-gray-300 text-lg px-2 py-1 rounded bg-gray-600 w-1/2">{correct_ans}</p>
+                <div className="flex w-full items-center justify-between my-2 gap-4">
+                    <label className="text-lg md:text-xl font-semibold text-gray-200 underline underline-offset-4 w-2/5">Correct Answer Count:</label>
+                    <p className="text-gray-300 text-base md:text-lg px-2 py-1 rounded bg-gray-600 w-1/2">{correct_ans}</p>
                 </div>
-                <div className="flex w-full items-center justify-start my-2 gap-4">
-                    <label className="text-xl font-semibold text-gray-200 underline underline-offset-4 w-2/5">Wrong Answer Count:</label>
-                    <p className="text-gray-300 text-lg px-2 py-1 rounded bg-gray-600 w-1/2">{wrong_ans}</p>
+                <div className="flex w-full items-center justify-between my-2 gap-4">
+                    <label className="text-lg md:text-xl font-semibold text-gray-200 underline underline-offset-4 w-2/5">Wrong Answer Count:</label>
+                    <p className="text-gray-300 text-base md:text-lg px-2 py-1 rounded bg-gray-600 w-1/2">{wrong_ans}</p>
                 </div>
-                <div className="flex w-full items-center justify-start my-2 gap-4">
-                    <label className="text-xl font-semibold text-gray-200 underline underline-offset-4 w-2/5">Total Score:</label>
-                    <p className="text-gray-300 text-lg px-2 py-1 rounded bg-gray-600 w-1/2">{score}</p>
+                <div className="flex w-full items-center justify-between my-2 gap-4">
+                    <label className="text-lg md:text-xl font-semibold text-gray-200 underline underline-offset-4 w-2/5">Total Score:</label>
+                    <p className="text-gray-300 text-base md:text-lg px-2 py-1 rounded bg-gray-600 w-1/2">{score}</p>
                 </div>
-                <div className="flex w-full items-center justify-start my-2 gap-4">
-                    <label className="text-xl font-semibold text-gray-200 underline underline-offset-4 w-2/5">Percentage:</label>
-                    <p className="text-gray-300 text-lg px-2 py-1 rounded bg-gray-600 w-1/2">{percentage}%</p>
+                <div className="flex w-full items-center justify-between my-2 gap-4">
+                    <label className="text-lg md:text-xl font-semibold text-gray-200 underline underline-offset-4 w-2/5">Percentage:</label>
+                    <p className="text-gray-300 text-base md:text-lg px-2 py-1 rounded bg-gray-600 w-1/2">{percentage}%</p>
                 </div>
 
-                <div className="flex justify-end w-full me-16">
-                <button type="submit" className="w-full my-8 bg-black text-teal-500 shadow-sm shadow-teal-400 rounded-lg focus:bg-teal-600 p-2 font-semibold max-w-[200px] outline-none" onClick={()=>{
+                <div className="flex justify-end w-full">
+                <button type="submit" className="w-full my-8 bg-black text-teal-500 shadow-sm shadow-teal-400 rounded-lg focus:bg-teal-600 p-2 font-semibold max-w-[160px] md:max-w-[180px] outline-none" onClick={()=>{
                     navigate("/dashboard")
                 }}>To Dashboard</button>
                 </div>

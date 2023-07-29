@@ -7,7 +7,9 @@ const initialState = {
     questions: [],
     ques_count: 1,
     correct_ans: 0,
-    results:[]
+    results: [],
+    marked_options: [],
+    check:0
 }
 
 const GetQuestionThunk = createAsyncThunk("questionn", async (data) => {
@@ -42,7 +44,7 @@ const DashboardThunk = createAsyncThunk("dashboard", async (category) => {
 })
 
 const SortThunk = createAsyncThunk("dashboard/sort", async (data) => {
-    console.log(data)
+    // console.log(data)
     return await baseurl.get(`user/dashboard/${data.category}/${data.difficulty}`)
         .then((res) => {
             return res
@@ -64,6 +66,18 @@ const UserSlice = createSlice({
         },
         increment_correct_ans: (state, action) => {
             state.correct_ans = state.correct_ans + 1
+        },
+        markedOption: (state, action) => {
+            const index = state.marked_options.findIndex((item) => item.question === action.payload.question)
+            if (index >= 0) {
+                state.marked_options[index].answer = action.payload.answer
+            }
+            else {
+                state.marked_options = [...state.marked_options, action.payload]
+            }
+        },
+        handleCheck:(state, action) => {
+            state.check = action.payload
         }
     },
     extraReducers: (builder) => {
@@ -115,4 +129,4 @@ const UserSlice = createSlice({
 
 export { GetQuestionThunk, SubmitThunk, DashboardThunk, SortThunk }
 export default UserSlice
-export const { increment, decrement, increment_correct_ans } = UserSlice.actions
+export const { increment, decrement, increment_correct_ans, markedOption, handleCheck } = UserSlice.actions

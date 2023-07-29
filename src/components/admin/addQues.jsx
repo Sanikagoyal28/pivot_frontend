@@ -76,8 +76,8 @@ function AddQues() {
                     WebkitTextFillColor: "transparent"
                 }}>ADD QUESTION</p>
             </div>
-            <form className="bg-gray-900 py-4 px-12 text-white w-11/12 rounded shadow-lg max-w-[500px] mx-auto" onSubmit={handleSubmit}>
-                <h2 className="font-semibold text-2xl text-center my-4">Add a Question by selecting a category, its Difficulty level and their options</h2>
+            <form className="bg-gray-900 py-4 md:px-12 sm:px-8 px-4 text-white w-11/12 rounded shadow-lg max-w-[500px] mx-auto" onSubmit={handleSubmit}>
+                <h2 className="font-semibold md:text-2xl text-xl text-center my-4">Add a Question by selecting a category, its Difficulty level and their options</h2>
                 <div className="flex flex-col max-w-4/5 w-full mx-auto my-4 text-gray-200">
                     <label className="text-base mb-1">Category</label>
                     <select className="bg-gray-700 rounded-lg p-2 outline-none focus:bg-gray-800 focus:border border-gray-700" required onChange={(e) => {

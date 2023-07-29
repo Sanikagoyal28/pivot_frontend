@@ -7,8 +7,8 @@ function Modal(props){
     }
     
     return <>
-    <Dialog open={props.open} onClose={() => {props.setOpen(false)}} className="w-full mx-auto rounded-lg shadow-lg px-8 h-screen flex flex-col justify-center items-center">
-        <div className="w-full mx-auto px-16 py-8 flex flex-col justify-center items-center m-auto bg-teal-600">
+    <Dialog open={props.open} className="w-full mx-auto rounded-lg shadow-lg px-8 h-screen flex flex-col justify-center">
+        <div className="w-full mx-auto sm:min-w-[360px] px-4 sm:px-12 py-8 flex flex-col justify-center items-center m-auto bg-teal-600">
             <h2 className="font-bold text-xl text-white text-center">{props.title}</h2>
             <img src={props.logo} width={props.size} />
             <p className="font-medium text-lg text-gray-200 text-center">{props.text}</p>

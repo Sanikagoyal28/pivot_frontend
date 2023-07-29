@@ -17,9 +17,9 @@ function Register() {
     })
     const [categories, setCategories] = useState([])
     var [questions, setQuestions] = useState([])
-    const [loading, setLoading] = useState(false)
     const dispatch = useDispatch()
     const navigate = useNavigate()
+    const reducer = useSelector((state) => state.userReducer)
     const categReducer = useSelector((state) => state.categReducer)
 
     function handleChange(identifier, value) {
@@ -51,7 +51,6 @@ function Register() {
 
 
     function handleSubmit(e) {
-        setLoading(true)
         e.preventDefault()
         const data = {
             username: inputs.username,
@@ -71,7 +70,6 @@ function Register() {
             }
             dispatch(GetQuestionThunk(data2)).
                 then((res) => {
-                    setLoading(false)
                     if (res.payload.data.success) {
                         navigate("/quiz")
                     }
@@ -81,7 +79,7 @@ function Register() {
 
     return <>
         <div className="flex flex-col justify-center w-full py-12">
-            <form className="h-fit bg-gray-900 py-4 px-12 text-white w-11/12 rounded shadow-lg max-w-[500px] mx-auto" onSubmit={handleSubmit}>
+            <form className="h-fit bg-gray-900 py-4 md:px-12 sm:px-8 px-4 text-white w-11/12 rounded shadow-lg max-w-[500px] mx-auto" onSubmit={handleSubmit}>
                 <h2 className="font-bold text-3xl text-center my-4">User Registration</h2>
                 <Input label="Username" placeholder="Enter your Username" name="username" onChange={handleChange} />
                 <div className="flex flex-col max-w-4/5 w-full mx-auto my-4 text-gray-200">
@@ -123,7 +121,7 @@ function Register() {
                 <button type="submit" className="w-full my-8 text-black bg-teal-500 shadow-sm shadow-teal-400 rounded-lg focus:bg-teal-600 duration-300 ease-in p-2 font-semibold max-w-4/5 outline-none hover:scale-[1.02]">Register</button>
             </form>
         </div>
-        <Loader loading={loading} />
+        <Loader loading={reducer.loading} />
     </>
 }
 

@@ -31,6 +31,7 @@ function Register() {
 
     function handleCategory() {
         dispatch(CategoryThunk())
+        console.log("category")
     }
 
     useEffect(() => {
@@ -79,7 +80,7 @@ function Register() {
 
     return <>
         <div className="flex flex-col justify-center w-full py-12">
-            <form className="h-fit bg-gray-900 py-4 md:px-12 sm:px-8 px-4 text-white w-11/12 rounded shadow-lg max-w-[500px] mx-auto" onSubmit={handleSubmit}>
+            <form className="h-fit bg-gray-900 py-4 px-4 md:px-8 text-white w-11/12 rounded shadow-lg max-w-[500px] mx-auto" onSubmit={handleSubmit}>
                 <h2 className="font-bold text-3xl text-center my-4">User Registration</h2>
                 <Input label="Username" placeholder="Enter your Username" name="username" onChange={handleChange} value={inputs.username} />
                 <div className="flex flex-col max-w-4/5 w-full mx-auto my-4 text-gray-200">

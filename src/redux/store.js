@@ -3,7 +3,8 @@ import persistReducer from "redux-persist/es/persistReducer";
 import reducer from "./index.js";
 import thunk from 'redux-thunk';
 import persistStore from "redux-persist/es/persistStore";
-import localStorage from "redux-persist/es/storage/session";
+// import localStorage from "redux-persist/es/storage/session";
+import localStorage from "redux-persist/es/storage";
 
 const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()
 

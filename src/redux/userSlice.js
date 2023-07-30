@@ -81,6 +81,14 @@ const UserSlice = createSlice({
         },
         handleCheck:(state, action) => {
             state.check = action.payload
+        },
+        clearUserRedux : (state, action) => {
+            state.questions = []
+            state.ques_count = 1
+            state.correct_ans = []
+            state.results = []
+            state.marked_options = []
+            state.check = 0
         }
     },
     extraReducers: (builder) => {
@@ -132,4 +140,4 @@ const UserSlice = createSlice({
 
 export { GetQuestionThunk, SubmitThunk, DashboardThunk, SortThunk }
 export default UserSlice
-export const { increment, decrement, incrementCorrectAns, markedOption, handleCheck } = UserSlice.actions
+export const { increment, decrement, incrementCorrectAns, markedOption, handleCheck, clearUserRedux } = UserSlice.actions

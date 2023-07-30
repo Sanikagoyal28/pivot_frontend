@@ -5,7 +5,7 @@ import baseurl from "./BaseUrl.js";
 const initialState = {
     loading: false,
     categories: [],
-    ques_count :0
+    ques_count: 0,
 }
 
 const CategoryThunk = createAsyncThunk("category", async (data) => {
@@ -18,7 +18,7 @@ const CategoryThunk = createAsyncThunk("category", async (data) => {
         })
 })
 
-const QuestionThunk = createAsyncThunk("question", async ({category, difficulty}) => {
+const QuestionThunk = createAsyncThunk("question", async ({ category, difficulty }) => {
     return await baseurl.get(`user/num_of_ques/${category}/${difficulty}`)
         .then((res) => {
             return res
@@ -32,6 +32,10 @@ const CategorySlice = createSlice({
     name: "category",
     initialState,
     reducers: {
+        clearCategoryRedux: (state, action) => {
+            state.categories = []
+            state.ques_count = 0
+        },
     },
     extraReducers: (builder) => {
         builder.addCase(CategoryThunk.pending, (state, action) => {
@@ -51,7 +55,7 @@ const CategorySlice = createSlice({
         builder.addCase(QuestionThunk.fulfilled, (state, action) => {
             state.loading = false;
             state.msg = action.payload.data.msg
-            state.ques_count= action.payload.data.num_of_ques
+            state.ques_count = action.payload.data.num_of_ques
         })
         builder.addCase(QuestionThunk.rejected, (state, action) => {
             state.loading = false;
@@ -60,4 +64,5 @@ const CategorySlice = createSlice({
 })
 
 export { CategoryThunk, QuestionThunk }
+export const { clearCategoryRedux } = CategorySlice.actions
 export default CategorySlice

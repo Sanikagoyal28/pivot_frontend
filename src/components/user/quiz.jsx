@@ -7,7 +7,7 @@ import wrongLogo from "../assets/fail.gif"
 import correctLogo from "../assets/success.gif"
 import { useNavigate } from "react-router";
 import { useDispatch, useSelector } from "react-redux";
-import { SubmitThunk, decrement, decrementCorrectAns, handleCheck, increment, incrementCorrectAns, markedOption } from "../../redux/userSlice.js";
+import { SubmitThunk, decrement, handleCheck, increment, incrementCorrectAns, markedOption } from "../../redux/userSlice.js";
 
 function Quiz() {
 
@@ -191,7 +191,7 @@ function Quiz() {
                     WebkitTextFillColor: "transparent"
                 }}>QUIZ COMPETETION</p>
             </div>
-            <div className="flex flex-col justify-center items-center w-11/12 max-w-[720px] p-2 md:p-8 bg-gray-900 m-auto rounded shadow-lg">
+            <div className="flex flex-col justify-center items-center w-11/12 max-w-[720px] p-8 bg-gray-900 m-auto rounded shadow-lg">
                 <div className="flex justify-end w-full">
                     <p className="text-gray-400 text-lg">{quesCount}/{reducer.questions.length}</p>
                 </div>

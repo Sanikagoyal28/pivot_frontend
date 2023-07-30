@@ -1,8 +1,9 @@
 import { useEffect, useState } from "react"
 import { useDispatch, useSelector } from "react-redux"
 import { useNavigate } from "react-router"
-import { DashboardThunk, SortThunk } from "../../redux/userSlice"
+import { DashboardThunk, SortThunk, clearUserRedux } from "../../redux/userSlice"
 import Loader from "../../utils/loader"
+import { clearCategoryRedux } from "../../redux/categorySlice"
 
 function Dashboard() {
 
@@ -27,8 +28,15 @@ function Dashboard() {
         }
         dispatch(SortThunk(data))
     }
+
+    function handleNext(){
+        navigate("/")
+        localStorage.clear()
+        dispatch(clearUserRedux())
+        dispatch(clearCategoryRedux())
+    }
     return <>
-        <section className="md:w-full flex flex-col items-center py-16 lg:px-24 sm:px-12 pb-32">
+        <section className="md:w-full flex flex-col items-center py-16 lg:px-24 sm:px-12 pb-32 overflow-x-hidden">
             <div className="border-red-400 border-2 inline px-[4px] py-1 text-center md:mb-[-40px]">
                 <p className="border-blue-400 p-2 text-3xl border-2 bg-gradient-to-r from-red-400 to-blue-400 bg-clip-text inline font-bold" style={{
                     WebkitTextFillColor: "transparent"
@@ -46,7 +54,7 @@ function Dashboard() {
                 </div>
             </div>
 
-            <div className="overflow-x-auto mx-12 w-11/12 md:w-full">
+            <div className="mx-12 w-full">
                 <table className="w-full lg:max-w-4/5 bg-gray-700 text-gray-200 table-fixed">
                     <tr>
                         <th className="text-lg border-2 border-gray-400 text-center px-1 py-3">User Name</th>
@@ -69,8 +77,7 @@ function Dashboard() {
             </div>
             <div className="flex justify-end w-full mb-16 mt-4">
                 <button type="submit" className="w-full my-8 bg-black text-teal-500 shadow-sm shadow-teal-400 rounded-lg focus:bg-teal-600 p-2 font-semibold max-w-[160px] md:max-w-[180px] outline-none" onClick={() => {
-                    navigate("/")
-                    localStorage.removeItem("user")
+                    handleNext()
                 }}>Play Again</button>
             </div>
         </section>
